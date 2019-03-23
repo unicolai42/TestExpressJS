@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste de produits</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Liste de produits</h1>
+<form action="/add-product" method="post">
+    <input name='ref' type="text" placeholder="Ref">
+    <input type="submit" value="Ajouter">
+</form>
+
+<table>
+    <tr>
+        <th>Référence</th>
+        <th>Nom</th>
+        <th>Marque</th>
+        <th>Prix</th>
+    </tr>
+    <% products.forEach((elem) => { %>
+    <tr>
+        <td> <%= elem.uid %> </td>
+        <td> <%= elem.label%></td>
+        <td><%= elem.brand%></td>
+        <td><%= elem.price %></td>
+    </tr>
+    <% }) %>
+</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+em {
+  background-color: #e8f3ff;
+  padding: 3px;
+  font-style: normal;
+  font-family: Consolas; }
+
+p {
+  line-height: 1.5; }
+
+#top-container {
+  text-align: center; }
+  #top-container img {
+    vertical-align: middle;
+    width: 200px; }
+
+/*# sourceMappingURL=style.css.map */

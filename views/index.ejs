@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <div id="top-container">
+    <h1><img src="https://adimeo.com/themes/custom/adimeo/logo.png" alt=""> | Test Node.js</h1>
+    <hr>
+  </div>
+
+    <div id="intro">
+      <p>Bienvenue dans ce test Node.js ! Celui-ci a pour but de vous évaluer sur votre capacité a vous adapter dans l'ecosystème Node.js.</p>
+      <p>Vous allez créer une page simple avec des modules Node.js que nous utilisons majoritairement sur les projets chez Adimeo.</p>
+      <p>Essayez de respecter un maximum l'architecture et le style du code déjà mise en place, mais n'hésitez pas à découper votre code en plusieurs fonctions.</p>
+    </div>
+    <div id="step-0">
+      <h2>Installation</h2>
+      <p>Installez MySQL et Nodejs.</p>
+      <p>Créez une base de données <em>test_nodejs</em> et executez les deux requêtes SQL du fichier <em>/init.sql</em>.</p>
+      <p>Modifiez le fichier de configuration <em>/lib/knex.js</em> avec vos identifiants MySQL.</p>
+    </div>
+    <div id="step1">
+      <h2>Première étape | Afficher une liste de produits - Express & EJS</h2>
+      <p>Cette page doit dans un premier temps afficher une liste d'articles enregistrés dans la table <em>product</em> d'une base de données.</p>
+      <ul>
+        <li><p>Créez une route <em>GET /product-list</em> et son controlleur associé pour afficher le template <em>product-list.ejs</em>.</p></li>
+        <li><p>En utilisant la fonction du modèle <em>product</em>, récupérez tous les produits et utilisez le template engine <em>EJS</em> pour les afficher dans le tableau.</p></li>
+      </ul>
+    </div>
+    <div id="step2">
+      <h2>Deuxième étape | Ajouter un produit à la liste - HTTP & KnexJs</h2>
+      <p>Maintenant que la page affiche la liste de nos produits, il faut pouvoir en ajouter de nouveaux en tapant leur référence dans le champ.</p>
+      <ul>
+        <li><p>Créez une route <em>POST /add-product</em> et son controlleur associé. Celui-ci doit faire une requete à une API pour récupérer le produit en question avant de l'insérer dans le table <em>product</em></p></li>
+        <li><p>Utilisez le module <em>http</em> pour faire cette requête HTTP à l'API : <em>http://ctsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids={REFERENCE}_1</em> (Le _1 à la fin est obligatoire). Par exemple
+            <a target="_blank" href="http://ctsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids=2012_1">http://ctsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids=2012_1</a>. Récupérez les valeurs de <em>label</em>, <em>price</em> et <em>brand</em> du produit.</p></li>
+        <li><p>Ajoutez une nouvelle fonction d'insertion au modèle <em>Product</em> en utilisant le query builder <em>knex.js</em></p></li>
+        <li><p>Effectuez une redirection vers la liste des produits pour constater le nouveau produit ajouté.</p></li>
+      </ul>
+    </div>
+    <div id="step3">
+      <h2>Troisème étape | Ajouter plusieurs produits en même temps - Async</h2>
+      <p>Permettez l'ajout de plusieurs références séparées par des virgules.</p>
+      <ul>
+        <li><p>Modifiez le controlleur d'ajout de produit : utilisez le module <em>async</em> (<a href="https://www.npmjs.com/package/async">https://www.npmjs.com/package/async</a>) pour faire plusieurs requêtes HTTP à l'API en parallèle (pour chacune des références)</p></li>
+      </ul>
+    </div>
+    <div id="step4">
+      <h2>Quatrième étape | Erreurs</h2>
+      <p>Gérez les erreurs :</p>
+      <ul>
+        <li><p>Si une erreur survient lors de l'affichage de la page ou de l'ajout d'un produit, redirigez vers une page d'erreur en utilisant la fonction <em>next()</em> dans le controlleur.</p></li>
+        <li><p>Si l'une des références n'existe pas, affichez un message "La référence XXXX n'existe pas et n'a pas pu être ajoutée à la liste" sur la page. Vous pouvez mémoriser les références inconnues dans une session avec le module <em>cookie-session</em> (<a
+                    href="https://www.npmjs.com/package/cookie-session">https://www.npmjs.com/package/cookie-session</a>).</p></li>
+      </ul>
+    </div>
+  </body>
+</html>

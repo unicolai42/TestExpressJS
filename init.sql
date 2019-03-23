@@ -1,0 +1,2 @@
+CREATE TABLE `test_nodejs`.`product` ( `uid` INT NOT NULL , `label` VARCHAR(255) NOT NULL , `brand` VARCHAR(255) NOT NULL , `price` DECIMAL(10,2) NOT NULL ) ENGINE = InnoDB;
+INSERT INTO `product` (`uid`, `label`, `brand`, `price`) VALUES ('8369', 'Tuile NF H14 Rouge IMERYS TOITURE', 'EDILIANS', '1.71'), ('61578', 'PERCEUSE PERCUSSION GSB 16 RE', 'BOSCH', '135.42')
