@@ -10,7 +10,7 @@ module.exports = function postAddProduct(req, res, next) {
 
     function addProductOnDb(ref, callback) {
         console.log(ref, 'ddd')
-        axios.get(`http://ctsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids=${parseInt(ref, 10)}_1`, {
+        axios.get(`http://tsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids=${parseInt(ref, 10)}_1`, {
             headers: { 'Content-Type' : 'application/json' }
         })
         .then(({data}) => {
@@ -23,13 +23,16 @@ module.exports = function postAddProduct(req, res, next) {
             callback()
         })
         .catch(err => {
-            console.log(err.message)
+            const errorProduct = require('./getErrorProduct.js')
+            
+            console.log(err.message, 'lllll')
+            callback()
         })
     } 
 
     each(refs, addProductOnDb, (err) => {
         if (err)
-            console.log(err)
+            errorProduct(res, err)
         else {
             const getProducts = require('./getProducts.js')
             getProducts(req, res, next)
