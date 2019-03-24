@@ -1,8 +1,7 @@
-module.exports = function getProducts(res) {
+module.exports = function getProducts(req, res) {
     const allProducts = require('../models/product/findAll.js')
 
-    console.log('oknbjhbhjb')
     allProducts((err, products) => {
-      res.render('product-list', {products: products})
+      res.render('product-list', {products: products, fail: req.session.refFail})
     })
 };

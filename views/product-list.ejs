@@ -7,9 +7,12 @@
 <body>
 <h1>Liste de produits</h1>
 <form action="/add-product" method="post">
-    <input name='ref' type="text" placeholder="Ref">
+    <input required="required" name='ref' type="text" placeholder="Ref">
     <input type="submit" value="Ajouter">
 </form>
+<% fail.forEach((elem) => { %>
+<p><%= elem %>, n'existe pas. Veuillez réessayer.<p>
+<% }) %>
 
 <table>
     <tr>
