@@ -18,15 +18,12 @@ module.exports = function postAddProduct(req, res, next) {
     refs = refs.filter((ref) => ref !== null)
 
     each(refs, (ref, callback) => {
-        console.log(ref, 'ddd')
         axios.get(`http://ctsearch-test.pdb-v2-front-test-natpub.pdb.lbn.fr/search-api/v2?mapping=pdb.product&ids=${ref}_1`, {
             headers: { 'Content-Type' : 'application/json' }
         })
         .then(({data}) => {
-            if (!data.hits.hits[0]) {
-                console.log(ref, 'Cette reference n\'existe pas')
+            if (!data.hits.hits[0])
                 req.session.refFail.push(ref)
-            }
             else {
                 const product = data.hits.hits[0]._source
                 const addProduct = require('../models/product/addProduct.js')
@@ -41,7 +38,6 @@ module.exports = function postAddProduct(req, res, next) {
         if (err)
             next(err)
         else {
-            console.log(req.session.refFail, '2')
             const getProducts = require('./getProducts.js')
             getProducts(req, res)
         }
